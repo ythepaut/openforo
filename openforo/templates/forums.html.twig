@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    OpenForo - Accueil
+{% endblock %}
+
+{% block body %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Forums</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for forum in forums %}
+
+                <tr>
+                    <th scope="row">
+                        <a href="/forums/{{ forum.id }}">{{ forum.title }}</a>
+                    </th>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}
