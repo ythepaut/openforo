@@ -20,7 +20,7 @@ class AppFixtures extends Fixture {
         
         for ($i = 1 ; $i <= 10 ; $i++) {
             $forum = new Forum();
-            $forum->setTitle("Forum n°" . $i);
+            $forum->setTitle("FORUM " . $i);
 
             for ($j = 1 ; $j <= 10 ; $j++) {
                 $discussion = new Discussion();
