@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Forum;
+use App\Entity\Discussion;
+use App\Repository\ForumRepository;
 
 /**
  * OpenForo PageController
@@ -24,13 +26,12 @@ class PageController extends AbstractController {
     }
 
     /**
-     * Forums page rendering
+     * Forums page rendering (<=> forum list)
      * 
      * @Route("/forums", name="forums")
      */
-    public function forums() {
+    public function forums(ForumRepository $repo) {
 
-        $repo = $this->getDoctrine()->getRepository(Forum::class);
         $forums = $repo->findAll();
 
         return $this->render('forums.html.twig', [
@@ -39,17 +40,24 @@ class PageController extends AbstractController {
     }
 
     /**
-     * Forum page rendering
+     * Forum page rendering (<=> discussion list)
      * 
      * @Route("/forums/{id}", name="forum")
      */
-    public function forum($id) {
-
-        $repo = $this->getDoctrine()->getRepository(Forum::class);
-        $forum = $repo->find($id);
-
+    public function forum(Forum $forum) {
         return $this->render('forum.html.twig', [
             'forum' => $forum
+        ]);
+    }
+
+    /**
+     * Discussion page rendering (<=> message list)
+     * 
+     * @Route("/discussion/{id}", name="discussion")
+     */
+    public function discussion(Discussion $discussion) {
+        return $this->render('discussion.html.twig', [
+            'discussion' => $discussion
         ]);
     }
 
