@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    OpenForo - {{ forum.title }}
+{% endblock %}
+
+{% block body %}
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 80%;">Discussions du forum « {{ forum.title }} »</th>
+                <th style="text-align: right;"><a class="btn btn-primary btn-sm" href="{{ path('new_discussion', {'id' : forum.id}) }}">Nouvelle discussion</a></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for discussion in forum.discussions %}
+
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('discussion', {'id' : discussion.id}) }}">{{ discussion.title }}</a>
+                    </th>
+                    <td>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

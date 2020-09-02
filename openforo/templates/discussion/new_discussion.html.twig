@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    OpenForo - Nouvelle discussion
+{% endblock %}
+
+{% block body %}
+    
+    <h1>Nouvelle discussion</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.title, {'attr' : {'placeholder' : 'Titre de la discussion'}}) }}
+
+    {{ form_row(form.firstpostcontent, {'attr' : {'placeholder' : 'Message'}}) }}
+
+    <button type="submit" class="btn btn-primary">Créer la discussion</button>
+    
+    {{ form_end(form) }}
+
+{% endblock %}
