@@ -10,10 +10,10 @@
 
     {{ form_start(form) }}
 
-    {{ form_row(form.discussion, {'attr' : {'placeholder' : 'Titre de la discussion'}}) }}
+    {{ form_row(form.title, {'attr' : {'placeholder' : 'Titre de la discussion'}}) }}
 
-    {{ form_row(form.content, {'attr' : {'placeholder' : 'Message'}}) }}
-    
+    {{ form_row(form.firstpostcontent, {'attr' : {'placeholder' : 'Message'}}) }}
+
     <button type="submit" class="btn btn-primary">Créer la discussion</button>
     
     {{ form_end(form) }}

@@ -53,6 +53,17 @@ class Discussion
      */
     private $posts;
 
+    /**
+     * First post content for DiscussionType on discussion creation
+     *
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Le message doit faire au moins {{ limit }} caractères.",
+     *      allowEmptyString = false
+     * )
+     */
+    private $firstPostContent;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -107,6 +118,18 @@ class Discussion
     public function setForum(?Forum $forum): self
     {
         $this->forum = $forum;
+
+        return $this;
+    }
+
+    public function getFirstPostContent(): ?string
+    {
+        return $this->firstPostContent;
+    }
+
+    public function setFirstPostContent(string $firstPostContent): self
+    {
+        $this->firstPostContent = $firstPostContent;
 
         return $this;
     }

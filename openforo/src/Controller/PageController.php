@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Form\PostType;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +13,7 @@ use App\Entity\Forum;
 use App\Entity\Discussion;
 use App\Entity\Post;
 use App\Repository\ForumRepository;
+use App\Form\DiscussionType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -81,7 +81,7 @@ class PageController extends AbstractController {
         $post = new Post();
 
         // creating form
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(DiscussionType::class, $discussion);
 
         $form->handleRequest($request);
 
@@ -94,7 +94,8 @@ class PageController extends AbstractController {
             
             // setting post's attributes
             $post->setCreationDate(new DateTime())
-                 ->setDiscussion($discussion);
+                 ->setDiscussion($discussion)
+                 ->setContent($discussion->getFirstPostContent());
 
             // pushing to database
             $manager->persist($discussion);
