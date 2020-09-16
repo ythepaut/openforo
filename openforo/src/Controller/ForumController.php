@@ -17,12 +17,12 @@ use App\Form\DiscussionType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * OpenForo PageController
+ * OpenForo ForumController
  * 
  * @author      Yohann THEPAUT (ythepaut) <contact@ythepaut.com>
  * @copyright   CC BY-NC-SA 4.0
  */
-class PageController extends AbstractController {
+class ForumController extends AbstractController {
 
     /**
      * Home page rendering
