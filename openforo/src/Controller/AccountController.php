@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ConnectionType;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,18 +25,13 @@ class AccountController extends AbstractController {
     /**
      * Login page rendering
      *
-     * @param Request $request                  -   Form POST request
-     * @param EntityManagerInterface $manager   -   ObjectManager to select in database
      * @return RedirectResponse|Response
      *
      * @Route("/login", name="login")
      */
-    public function login(Request $request, EntityManagerInterface $manager) {
-
+    public function login() {
         // rendering form page
-        return $this->render('account/login.html.twig', [
-
-        ]);
+        return $this->render('account/login.html.twig');
 
     }
 
@@ -63,7 +59,8 @@ class AccountController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
 
             // setting user's attribute
-            $user->setPasswd($encoder->encodePassword($user, $user->getPasswd()));
+            //TODO IMPORTANT
+            //$user->setPasswd($encoder->encodePassword($user, $user->getPasswd()));
 
             // pushing to database
             $manager->persist($user);

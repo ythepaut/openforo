@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
  *     fields = {"email", "username"},
- *     message = "L'email ou le nom d'utilisateur est déjà utilisé"
+ *     message = "Déjà utilisé"
  * )
  */
 class User implements UserInterface
@@ -38,6 +38,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "Veuillez saisir une adresse e-mail valide."
+     * )
      */
     private $email;
 
@@ -60,7 +63,7 @@ class User implements UserInterface
     private $confirm_passwd;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * OLD ORM\Column(type="string", length=255)
      */
     private $salt;
 
@@ -127,9 +130,15 @@ class User implements UserInterface
         return $this->getPasswd();
     }
 
-    public function getSalt()
+    public function getSalt() : ?string
     {
         return $this->getSalt();
+    }
+
+    public function setSalt(string $salt) : self
+    {
+        $this->salt = $salt;
+        return $this;
     }
 
     public function eraseCredentials()

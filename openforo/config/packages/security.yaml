@@ -2,17 +2,27 @@ security:
     encoders:
         App\Entity\User:
             algorithm: bcrypt
+            cost: 12
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        #users_in_memory: { memory: null }
+        # User provider for login
+        in_database:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            lazy: true
-            provider: users_in_memory
+            #lazy: true
+            #provider: users_in_memory
+            provider: in_database
+            form_login:
+                login_path: login
+                check_path: login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
