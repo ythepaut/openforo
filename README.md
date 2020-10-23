@@ -1,6 +1,6 @@
 # OpenForo
 
-Open source forum
+Petit projet pour me familiariser avec un framework PHP (symfony).
 
 # A propos
 
